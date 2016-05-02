@@ -7,6 +7,7 @@ final class YCPageFooterView {
      */
     public static function renderModelAsHTML(stdClass $model) {
         echo '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>';
+        echo '<footer class="YCPageFooterView">';
 
         CBContainerView::renderModelAsHTML((object)[
             'subviews' => [
@@ -19,6 +20,8 @@ final class YCPageFooterView {
             ],
             'themeID' => YCModels::CBThemeIDForYCPageFooterViewContainer,
         ]);
+
+        echo '</footer>';
     }
 
     /**
