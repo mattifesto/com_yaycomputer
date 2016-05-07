@@ -13,6 +13,12 @@ final class YCBlogPostPageLayout {
 
         echo '<main class="YCBlogPostPageLayout"><article>';
 
+        if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
+            CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
+                'showPublicationDate' => true,
+            ]);
+        }
+
         $renderContentCallback();
 
         echo '</article></main>';

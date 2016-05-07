@@ -13,6 +13,10 @@ final class YCStandardPageLayout {
 
         echo '<main class="YCStandardPageLayout">';
 
+        if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
+            CBPageTitleAndDescriptionView::renderModelAsHTML((object)[]);
+        }
+
         $renderContentCallback();
 
         echo '</main>';
