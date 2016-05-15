@@ -27,6 +27,18 @@ final class YCPageSettingsForResponsivePages {
                 color: hsl(0, 0%, 20%);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
             }
+            a {
+                color: hsl(210, 100%, 50%);
+            }
+            .CBWellKnownThemeForContent,
+            .CBWellKnownThemeForPageTitleAndDescription {
+                font-size: 18px;
+            }
+            .CBWellKnownThemeForContent h1,
+            .CBWellKnownThemeForContent h2,
+            .CBWellKnownThemeForPageTitleAndDescription h1 {
+                font-weight: 300;
+            }
         </style>
     <?php }
 
