@@ -34,6 +34,7 @@ final class YCBlogPostPageLayout {
     public static function specToModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
+            'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
         ];
     }
 }
