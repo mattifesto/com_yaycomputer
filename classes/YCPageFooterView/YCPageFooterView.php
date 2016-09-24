@@ -6,22 +6,25 @@ final class YCPageFooterView {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
-        echo '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>';
-        echo '<footer class="YCPageFooterView">';
+        CBHTMLOutput::requireClassName(__CLASS__);
 
-        CBContainerView::renderModelAsHTML((object)[
-            'subviews' => [
-                (object)[
-                    'className' => 'CBThemedTextView',
-                    'center' => true,
-                    'contentAsHTML' => 'Copyright &copy; 2016 - ' . gmdate('Y') . ' ' . CBSiteNameHTML,
-                    'themeID' => YCModels::CBThemeIDForYCPageFooterViewCopyright,
-                ],
-            ],
-            'themeID' => YCModels::CBThemeIDForYCPageFooterViewContainer,
-        ]);
+        ?>
 
-        echo '</footer>';
+        <div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>
+        <footer class="YCPageFooterView">
+            <div class="copyright">
+                Copyright &copy; 2016 - <?= gmdate('Y'), ' ', CBSiteNameHTML ?>
+            </div>
+        </footer>
+
+        <?php
+    }
+
+    /**
+     * @return [string]
+     */
+    public static function requiredCSSURLs() {
+        return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
     }
 
     /**

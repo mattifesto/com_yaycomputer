@@ -1,0 +1,10 @@
+.YCPageFooterView {
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 80%);
+}
+
+.YCPageFooterView .copyright {
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+}
