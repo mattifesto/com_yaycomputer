@@ -6,14 +6,22 @@ final class YCPageHeaderView {
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
+        CBHTMLOutput::requireClassName(__CLASS__);
+
         echo '<header class="YCPageHeaderView">';
 
         CBThemedMenuView::renderModelAsHTML((object)[
             'menuID' => CBStandardModels::CBMenuIDForMainMenu,
-            'themeID' => CBStandardModels::CBThemeIDForCBMenuViewForMainMenu,
         ]);
 
         echo '</header>';
+    }
+
+    /**
+     * @return [string]
+     */
+    public static function requiredCSSURLs() {
+        return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
     }
 
     /**
