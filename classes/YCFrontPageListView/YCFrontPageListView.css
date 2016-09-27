@@ -2,19 +2,24 @@
     text-align: center;
 }
 
-.YCFrontPageListView  > :first-child {
-    font-size: 250%;
-}
-
 .YCFrontPageListView > a {
+    align-items: center;
     box-sizing: border-box;
     color: inherit;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 200px;
-    padding: 20px;
+    padding: 2em 1em;
     text-decoration: none;
+}
+
+.YCFrontPageListView > a .description {
+    max-width: 30em;
+}
+
+.YCFrontPageListView  > :first-child {
+    font-size: 250%;
 }
 
 .YCFrontPageListView > a:hover {

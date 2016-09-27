@@ -48,7 +48,7 @@ EOT;
 
         <a href="<?= CBSiteURL . "/{$page->URI}/" ?>">
             <h2><?= $page->titleHTML ?></h2>
-            <div><?= $page->subtitleHTML ?></div>
+            <div class="description"><?= $page->subtitleHTML ?></div>
             <div><?= ColbyConvert::timestampToHTML($page->published) ?></div>
         </a>
 
