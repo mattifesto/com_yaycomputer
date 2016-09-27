@@ -1,0 +1,40 @@
+.YCFrontPageListView {
+    text-align: center;
+}
+
+.YCFrontPageListView  > :first-child {
+    font-size: 250%;
+}
+
+.YCFrontPageListView > a {
+    box-sizing: border-box;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.YCFrontPageListView > a:hover {
+    background-color: hsl(210, 100%, 90%);
+}
+
+.YCFrontPageListView time {
+    color: hsl(0, 0%, 50%);
+    font-size: 75%;
+    font-style: italic;
+}
+
+@media (max-width: 1067px) {
+    .YCFrontPageListView > :first-child {
+        font-size: 200%;
+    }
+}
+
+@media (max-width: 735px) {
+    .YCFrontPageListView > :first-child {
+        font-size: 150%;
+    }
+}
