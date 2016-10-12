@@ -1,5 +1,7 @@
 .YCFrontPageListView {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .YCFrontPageListView > a {
@@ -9,37 +11,62 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 480px;
     min-height: 200px;
     padding: 2em 1em;
+    text-align: center;
     text-decoration: none;
 }
 
+.YCFrontPageListView > a .title,
 .YCFrontPageListView > a .description {
     max-width: 30em;
 }
 
-.YCFrontPageListView  > :first-child {
-    font-size: 250%;
+.YCFrontPageListView > a .description {
+    color: hsl(0, 0%, 50%);
+    margin: 1em 0;
 }
 
-.YCFrontPageListView > a:hover {
-    background-color: hsl(210, 100%, 90%);
+.YCFrontPageListView  > a:first-child {
+    font-size: 200%;
+    width: 100%;
+}
+
+.YCFrontPageListView > a:hover .title {
+    color: hsl(30, 100%, 50%);
 }
 
 .YCFrontPageListView time {
     color: hsl(0, 0%, 50%);
-    font-size: 75%;
+    font-size: 14px;
     font-style: italic;
 }
 
+/* first summary font size */
+
 @media (max-width: 1067px) {
-    .YCFrontPageListView > :first-child {
-        font-size: 200%;
+    .YCFrontPageListView > a:first-child {
+        font-size: 150%;
     }
 }
 
 @media (max-width: 735px) {
-    .YCFrontPageListView > :first-child {
-        font-size: 150%;
+    .YCFrontPageListView > a:first-child {
+        font-size: 125%;
+    }
+}
+
+/* summary width */
+
+@media (max-width: 959px) {
+    .YCFrontPageListView > a {
+        width: 50%;
+    }
+}
+
+@media (max-width: 639px) {
+    .YCFrontPageListView > a {
+        width: 100%;
     }
 }
