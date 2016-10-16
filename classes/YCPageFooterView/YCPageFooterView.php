@@ -3,14 +3,19 @@
 final class YCPageFooterView {
 
     /**
+     * @param bool? $model->hideFlexboxFill
+     *
      * @return null
      */
     public static function renderModelAsHTML(stdClass $model) {
         CBHTMLOutput::requireClassName(__CLASS__);
 
+        if (empty(CBModel::value($model, 'hideFlexboxFill'))) {
+            echo '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>';
+        }
+
         ?>
 
-        <div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>
         <footer class="YCPageFooterView">
             <div class="copyright">
                 Copyright &copy; 2016 - <?= gmdate('Y'), ' ', CBSiteNameHTML ?>

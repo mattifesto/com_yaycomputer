@@ -11,7 +11,7 @@ final class YCBlogPostPageLayout {
     public static function render(stdClass $layoutModel, callable $renderContentCallback) {
         YCPageHeaderView::renderModelAsHTML((object)[]);
 
-        echo '<main class="YCBlogPostPageLayout"><article>';
+        echo '<main class="YCBlogPostPageLayout" style="flex: 1 1 auto;"><article>';
 
         if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
             CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
@@ -23,7 +23,9 @@ final class YCBlogPostPageLayout {
 
         echo '</article></main>';
 
-        YCPageFooterView::renderModelAsHTML((object)[]);
+        YCPageFooterView::renderModelAsHTML((object)[
+            'hideFlexboxFill' => true,
+        ]);
     }
 
     /**
