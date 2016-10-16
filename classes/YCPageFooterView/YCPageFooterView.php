@@ -14,9 +14,26 @@ final class YCPageFooterView {
             echo '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>';
         }
 
+        $sitePreferences = CBSitePreferences::model();
+
         ?>
 
         <footer class="YCPageFooterView">
+            <div class="lists">
+                <ul>
+                    <?php
+
+                    if (!empty($URL = $sitePreferences->facebookURL)) {
+                        echo "<li><a href=\"{$URL}\">Facebook<a/></li>";
+                    }
+
+                    if (!empty($URL = $sitePreferences->twitterURL)) {
+                        echo "<li><a href=\"{$URL}\">Twitter<a/></li>";
+                    }
+
+                    ?>
+                </ul>
+            </div>
             <div class="copyright">
                 Copyright &copy; 2016 - <?= gmdate('Y'), ' ', CBSiteNameHTML ?>
             </div>

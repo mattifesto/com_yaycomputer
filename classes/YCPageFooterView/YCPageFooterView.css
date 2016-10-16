@@ -3,6 +3,24 @@
     color: hsl(0, 0%, 90%);
 }
 
+.YCPageFooterView a {
+    text-decoration: none;
+}
+
+.YCPageFooterView a:hover {
+    text-decoration: underline;
+}
+
+.YCPageFooterView .lists {
+    padding: 10px 0;
+}
+
+.YCPageFooterView ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
 .YCPageFooterView .copyright {
     font-size: 14px;
     text-align: center;
