@@ -24,7 +24,8 @@ final class YCPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
             html {
-                color: hsl(0, 0%, 20%);
+                --CBLinkColor: hsl(210, 100%, 50%);
+                color: rgba(0, 0, 0, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
             }
             a {

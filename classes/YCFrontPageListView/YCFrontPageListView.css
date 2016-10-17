@@ -34,7 +34,7 @@
 }
 
 .YCFrontPageListView > a:hover .title {
-    color: hsl(30, 100%, 50%);
+    color: var(--CBLinkColor);
 }
 
 .YCFrontPageListView time {
