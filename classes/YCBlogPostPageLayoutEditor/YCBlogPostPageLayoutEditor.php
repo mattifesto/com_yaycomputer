@@ -6,7 +6,7 @@ final class YCBlogPostPageLayoutEditor {
      * @return [string]
      */
     public static function requiredClassNames() {
-        return ['CBUI', 'CBUIBooleanEditor'];
+        return ['CBUI', 'CBUIBooleanEditor', 'CBUIStringEditor'];
     }
 
     /**
