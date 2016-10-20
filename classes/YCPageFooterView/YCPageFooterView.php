@@ -24,11 +24,11 @@ final class YCPageFooterView {
                     <?php
 
                     if (!empty($URL = $sitePreferences->facebookURL)) {
-                        echo "<li><a href=\"{$URL}\">Facebook<a/></li>";
+                        echo "<li><a href=\"{$URL}\">Facebook</a></li>";
                     }
 
                     if (!empty($URL = $sitePreferences->twitterURL)) {
-                        echo "<li><a href=\"{$URL}\">Twitter<a/></li>";
+                        echo "<li><a href=\"{$URL}\">Twitter</a></li>";
                     }
 
                     ?>
