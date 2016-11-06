@@ -44,9 +44,16 @@ EOT;
      * @return null
      */
     public static function renderPagePanel(stdClass $page) {
+        if (empty($page->thumbnailURL)) {
+            $thumbnailElement = '';
+        } else {
+            $thumbnailElement = "<div><img class=\"YCFrontPageListViewThumbnail\" src=\"{$page->thumbnailURL}\" alt=\"{$page->titleHTML}\"></div>";
+        }
+
         ?>
 
         <a href="<?= CBSiteURL . "/{$page->URI}/" ?>">
+            <?= $thumbnailElement ?>
             <h2 class="title"><?= $page->titleHTML ?></h2>
             <div class="description"><?= $page->subtitleHTML ?></div>
             <div><?= ColbyConvert::timestampToHTML($page->published) ?></div>
@@ -60,6 +67,13 @@ EOT;
      */
     public static function requiredCSSURLs() {
         return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
+    }
+
+    /**
+     * @return [string]
+     */
+    public static function requiredJavaScriptURLs() {
+        return [Colby::flexnameForJavaScriptForClass(CBSiteURL, __CLASS__)];
     }
 
     /**

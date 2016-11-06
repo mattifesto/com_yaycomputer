@@ -18,6 +18,12 @@
     text-decoration: none;
 }
 
+.YCFrontPageListView > a img {
+    max-width: 100px;
+    transition: transform 5s;
+    transition-timing-function: ease-in-out;
+}
+
 .YCFrontPageListView > a .title,
 .YCFrontPageListView > a .description {
     max-width: 30em;
