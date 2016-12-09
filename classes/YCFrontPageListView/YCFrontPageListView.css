@@ -10,7 +10,6 @@
     color: inherit;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 480px;
     min-height: 200px;
     padding: 2em 1em;
@@ -18,10 +17,34 @@
     text-decoration: none;
 }
 
-.YCFrontPageListView > a img {
-    max-width: 100px;
-    transition: transform 5s;
-    transition-timing-function: ease-in-out;
+.YCFrontPageListView figure {
+    max-width: 320px;
+    width: 100%;
+}
+
+.YCFrontPageListView > :first-child figure {
+    max-width: 640px;
+}
+
+.YCFrontPageListView figure > div {
+    padding-bottom: 56.25%;
+    position: relative;
+}
+
+.YCFrontPageListView figure > div > div {
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+}
+
+.YCFrontPageListView figure img {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .YCFrontPageListView > a .title,

@@ -28,11 +28,20 @@ EOT;
         CBHTMLOutput::requireClassName(__CLASS__);
 
         $pages = YCFrontPageListView::fetchPages();
+        $firstPage = array_shift($pages)
 
         ?>
 
         <div class="YCFrontPageListView">
-            <?php array_walk($pages, 'YCFrontPageListView::renderPagePanel') ?>
+            <?php
+
+            YCFrontPageListView::renderPagePanel($firstPage, "rw1280");
+
+            array_walk($pages, function ($page) {
+                YCFrontPageListView::renderPagePanel($page);
+            });
+
+            ?>
         </div>
 
         <?php
@@ -43,17 +52,26 @@ EOT;
      *
      * @return null
      */
-    public static function renderPagePanel(stdClass $page) {
-        if (empty($page->thumbnailURL)) {
-            $thumbnailElement = '';
-        } else {
-            $thumbnailElement = "<div><img class=\"YCFrontPageListViewThumbnail\" src=\"{$page->thumbnailURL}\" alt=\"{$page->titleHTML}\"></div>";
+    public static function renderPagePanel(stdClass $page, $imageSize = "rw640") {
+        if ($image = CBImage::URIToImage($page->thumbnailURL)) {
+            $filename = "{$imageSize}.{$image->extension}";
+            $URL = CBDataStore::flexpath($image->ID, $filename, CBSiteURL);
         }
 
         ?>
 
         <a href="<?= CBSiteURL . "/{$page->URI}/" ?>">
-            <?= $thumbnailElement ?>
+            <figure class="image">
+                <div>
+                    <div>
+                        <?php if (!empty($URL)) { ?>
+
+                        <img src="<?= $URL ?>" alt="<?= $page->titleHTML ?>">
+
+                        <?php } ?>
+                    </div>
+                </div>
+            </figure>
             <h2 class="title"><?= $page->titleHTML ?></h2>
             <div class="description"><?= $page->subtitleHTML ?></div>
             <div><?= ColbyConvert::timestampToHTML($page->published) ?></div>
@@ -67,13 +85,6 @@ EOT;
      */
     public static function requiredCSSURLs() {
         return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
-    }
-
-    /**
-     * @return [string]
-     */
-    public static function requiredJavaScriptURLs() {
-        return [Colby::flexnameForJavaScriptForClass(CBSiteURL, __CLASS__)];
     }
 
     /**
