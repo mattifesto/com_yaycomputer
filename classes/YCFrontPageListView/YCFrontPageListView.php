@@ -33,15 +33,12 @@ EOT;
         ?>
 
         <div class="YCFrontPageListView">
-            <?php
-
-            YCFrontPageListView::renderPagePanel($firstPage, "rw1280");
-
-            array_walk($pages, function ($page) {
-                YCFrontPageListView::renderPagePanel($page);
-            });
-
-            ?>
+            <div class="first">
+                <?php YCFrontPageListView::renderPagePanel($firstPage, "rw1280"); ?>
+            </div>
+            <div class="container">
+                <?php array_walk($pages, function ($page) { YCFrontPageListView::renderPagePanel($page); }); ?>
+            </div>
         </div>
 
         <?php
@@ -60,7 +57,7 @@ EOT;
 
         ?>
 
-        <a href="<?= CBSiteURL . "/{$page->URI}/" ?>">
+        <a class="page" href="<?= CBSiteURL . "/{$page->URI}/" ?>">
             <figure class="image">
                 <div>
                     <div>
