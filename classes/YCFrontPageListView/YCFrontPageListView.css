@@ -32,8 +32,6 @@
 
 .YCFrontPageListView figure > div > div {
     bottom: 0;
-    xdisplay: flex;
-    xjustify-content: center;
     left: 0;
     position: absolute;
     right: 0;
