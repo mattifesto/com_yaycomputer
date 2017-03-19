@@ -22,7 +22,7 @@ final class YCArtworkView {
             'height' => $image->height,
             'maxWidth' => empty($model->maxWidth) ? $image->width / 2 : $image->maxWidth,
             'width' => $image->width,
-            'URL' => CBDataStore::flexpath($image->ID, $basename, CBSiteURL),
+            'URL' => CBDataStore::flexpath($image->ID, $basename, CBSitePreferences::siteURL()),
         ]);
 
         echo '</figure>';
@@ -32,7 +32,7 @@ final class YCArtworkView {
      * @return [string]
      */
     static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
+        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 
     /**

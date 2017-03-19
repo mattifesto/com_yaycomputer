@@ -52,12 +52,12 @@ EOT;
     public static function renderPagePanel(stdClass $page, $imageSize = "rw640") {
         if ($image = CBImage::URIToImage($page->thumbnailURL)) {
             $filename = "{$imageSize}.{$image->extension}";
-            $URL = CBDataStore::flexpath($image->ID, $filename, CBSiteURL);
+            $URL = CBDataStore::flexpath($image->ID, $filename, CBSitePreferences::siteURL());
         }
 
         ?>
 
-        <a class="page" href="<?= CBSiteURL . "/{$page->URI}/" ?>">
+        <a class="page" href="<?= CBSitePreferences::siteURL() . "/{$page->URI}/" ?>">
             <figure class="image">
                 <div>
                     <div>
@@ -81,7 +81,7 @@ EOT;
      * @return [string]
      */
     public static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSiteURL, __CLASS__)];
+        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 
     /**

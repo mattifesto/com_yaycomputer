@@ -13,6 +13,6 @@ final class YCArtworkViewEditor {
      * @return [string]
      */
     static function requiredJavaScriptURls() {
-        return [Colby::flexnameForJavaScriptForClass(CBSiteURL, __CLASS__)];
+        return [Colby::flexnameForJavaScriptForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 }
