@@ -6,16 +6,13 @@ final class YCBlogPostPageTemplate {
      * @return stdClass
      */
     public static function model() {
-        $spec = (object)[
-            'className' => 'CBViewPage',
-            'classNameForKind' => 'YCBlogPostPageKind',
-            'layout' => (object)['className' => 'YCBlogPostPageLayout'],
-        ];
+        $spec = CBStandardPageTemplate::model();
+        $spec->classNameForKind = 'YCBlogPostPageKind';
+        
+        $spec->layout->customLayoutClassName = 'YCBlogPostPageLayout';
+        $spec->layout->isArticle = true;
 
-        // text
-        $spec->sections[] = (object)[
-            'className' => 'CBTextView2',
-        ];
+        $spec->sections[0]->showPublicationDate = true;
 
         return $spec;
     }
@@ -24,6 +21,6 @@ final class YCBlogPostPageTemplate {
      * @return string
      */
     public static function title() {
-        return 'Blog Post';
+        return 'YC Blog Post';
     }
 }

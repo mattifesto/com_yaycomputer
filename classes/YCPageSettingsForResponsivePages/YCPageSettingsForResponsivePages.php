@@ -24,21 +24,13 @@ final class YCPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
         <style>
             html {
-                --CBLinkColor: hsl(210, 100%, 50%);
                 color: rgba(0, 0, 0, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-            }
-            a {
-                color: hsl(210, 100%, 50%);
-            }
-            .CBWellKnownThemeForContent,
-            .CBWellKnownThemeForPageTitleAndDescription {
                 font-size: 18px;
             }
-            .CBWellKnownThemeForContent h1,
-            .CBWellKnownThemeForContent h2,
-            .CBWellKnownThemeForPageTitleAndDescription h1 {
-                font-weight: 300;
+            .CBDarkTheme,
+            .CBLightTheme {
+                --CBTextColorForLinks: hsl(210, 100%, 50%);
             }
         </style>
     <?php }
