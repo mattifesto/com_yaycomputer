@@ -5,18 +5,19 @@ final class YCFrontPageListView {
     /**
      * @return [stdClass]
      */
-    public static function fetchPages() {
+    static function fetchPages() {
         $SQL = <<<EOT
 
-            SELECT  `published`, `subtitleHTML`, `thumbnailURL`, `titleHTML`, `URI`
-            FROM `ColbyPages`
-            WHERE `classNameForKind` = 'YCBlogPostPageKind' AND `published` IS NOT NULL
-            ORDER BY `published` DESC
-            LIMIT 10
+            SELECT      `keyValueData`
+            FROM        `ColbyPages`
+            WHERE       `classNameForKind` = 'YCBlogPostPageKind' AND
+                        `published` IS NOT NULL
+            ORDER BY    `published` DESC
+            LIMIT       10
 
 EOT;
 
-        return CBDB::SQLToObjects($SQL);
+        return CBDB::SQLToArray($SQL, ['valueIsJSON' => true]);
     }
 
     /**
@@ -24,7 +25,7 @@ EOT;
      *
      * @return null
      */
-    public static function renderModelAsHTML(stdClass $model) {
+    static function renderModelAsHTML(stdClass $model) {
         CBHTMLOutput::requireClassName(__CLASS__);
 
         $pages = YCFrontPageListView::fetchPages();
@@ -45,33 +46,37 @@ EOT;
     }
 
     /**
-     * @param stdClass $page
+     * @param object (CBPageSummaryView) $model
+     *
+     *      The CBPageSummaryView model for the page.
      *
      * @return null
      */
-    public static function renderPagePanel(stdClass $page, $imageSize = "rw640") {
-        if ($image = CBImage::URIToImage($page->thumbnailURL)) {
-            $filename = "{$imageSize}.{$image->extension}";
-            $URL = CBDataStore::flexpath($image->ID, $filename, CBSitePreferences::siteURL());
+    static function renderPagePanel(stdClass $model, $imageSize = "rw640") {
+        if (empty($model->image)) {
+            $URL = CBModel::value($model, 'thumbnailURL');
+        } else {
+            $filename = "{$imageSize}.{$model->image->extension}";
+            $URL = CBDataStore::flexpath($model->image->ID, $filename, CBSitePreferences::siteURL());
         }
 
         ?>
 
-        <a class="page" href="<?= CBSitePreferences::siteURL() . "/{$page->URI}/" ?>">
+        <a class="page" href="<?= CBSitePreferences::siteURL() . "/{$model->URI}/" ?>">
             <figure class="image">
                 <div>
                     <div>
                         <?php if (!empty($URL)) { ?>
 
-                        <img src="<?= $URL ?>" alt="<?= $page->titleHTML ?>">
+                        <img src="<?= $URL ?>" alt="<?= $model->titleHTML ?>">
 
                         <?php } ?>
                     </div>
                 </div>
             </figure>
-            <h2 class="title"><?= $page->titleHTML ?></h2>
-            <div class="description"><?= $page->subtitleHTML ?></div>
-            <div><?= ColbyConvert::timestampToHTML($page->published) ?></div>
+            <h2 class="title"><?= $model->titleHTML ?></h2>
+            <div class="description"><?= $model->descriptionHTML ?></div>
+            <div><?= ColbyConvert::timestampToHTML($model->publicationTimeStamp) ?></div>
         </a>
 
         <?php
@@ -80,7 +85,7 @@ EOT;
     /**
      * @return [string]
      */
-    public static function requiredCSSURLs() {
+    static function requiredCSSURLs() {
         return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
     }
 
@@ -89,7 +94,7 @@ EOT;
      *
      * @return stdClass
      */
-    public static function specToModel(stdClass $spec) {
+    static function specToModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
         ];
