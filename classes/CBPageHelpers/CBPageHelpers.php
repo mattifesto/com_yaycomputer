@@ -5,8 +5,18 @@ final class CBPageHelpers {
     /**
      * @return string
      */
-    static function classNameForPageSettings() {
+    static function classNameForUnsetPageSettings() {
         return 'YCPageSettingsForResponsivePages';
+    }
+
+    /**
+     * @return [string]
+     */
+    static function classNamesForPageKinds() {
+        return array_merge(
+            CBPagesPreferences::classNamesForPageKindsDefault(),
+            ['YCBlogPostPageKind']
+        );
     }
 
     /**
