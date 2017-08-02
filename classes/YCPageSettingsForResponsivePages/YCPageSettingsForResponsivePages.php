@@ -5,14 +5,7 @@ final class YCPageSettingsForResponsivePages {
     /**
      * @return  null
      */
-    public static function renderEndOfBodyContent() { ?>
-        <script src="<?= CBSystemURL ?>/javascript/Colby.js"></script>
-    <?php }
-
-    /**
-     * @return  null
-     */
-    public static function renderHeadContent() { ?>
+    static function renderHeadContent() { ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="<?= CBSystemURL ?>/javascript/html5shiv.js"></script>
         <script src="<?= CBSystemURL ?>/javascript/ColbyEqualize.js"></script>
@@ -38,7 +31,7 @@ final class YCPageSettingsForResponsivePages {
     /**
      * @return  null
      */
-    public static function renderStartOfBodyContent() {
+    static function renderStartOfBodyContent() {
         $googleTagManagerID = CBSitePreferences::googleTagManagerID();
 
         if ($googleTagManagerID !== '') { ?>

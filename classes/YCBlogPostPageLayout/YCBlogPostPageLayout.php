@@ -13,7 +13,7 @@ final class YCBlogPostPageLayout {
      *
      * @return null
      */
-    public static function render(stdClass $layoutModel, callable $renderContentCallback) {
+    static function render(stdClass $layoutModel, callable $renderContentCallback) {
         $stylesID = CBModel::value($layoutModel, 'stylesID');
         $stylesCSS = CBModel::value($layoutModel, 'stylesCSS');
 
@@ -29,7 +29,9 @@ final class YCBlogPostPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        YCPageHeaderView::renderModelAsHTML((object)[]);
+        CBView::renderModelAsHTML((object)[
+            'className' => 'YCPageHeaderView',
+        ]);
 
         $styles[] = 'flex: 1 1 auto';
 
@@ -48,7 +50,8 @@ final class YCBlogPostPageLayout {
                 <?php
 
                 if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
-                    CBPageTitleAndDescriptionView::renderModelAsHTML((object)[
+                    CBView::renderModelAsHTML((object)[
+                        'className' => 'CBPageTitleAndDescriptionView',
                         'showPublicationDate' => true,
                         'useLightTextColors' => !empty($layoutModel->useLightTextColors),
                     ]);
@@ -63,7 +66,8 @@ final class YCBlogPostPageLayout {
 
         <?php
 
-        YCPageFooterView::renderModelAsHTML((object)[
+        CBView::renderModelAsHTML((object)[
+            'className' => 'YCPageFooterView',
             'hideFlexboxFill' => true,
         ]);
     }
