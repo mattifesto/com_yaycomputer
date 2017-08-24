@@ -13,7 +13,7 @@ RewriteBase /
 # Redirect deprecated URLs
 #
 
-RewriteRule ^blog/ / [R=301,L]
+RewriteRule ^blog/?$ / [R=301,L]
 
 #
 # Redirect to https
