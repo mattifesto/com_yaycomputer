@@ -5,12 +5,12 @@ final class YCPageHeaderView {
     /**
      * @return null
      */
-    public static function renderModelAsHTML(stdClass $model) {
-        CBHTMLOutput::requireClassName(__CLASS__);
+    static function CBView_render(stdClass $model) {
+        $selectedMainMenuItemName = CBModel::value(CBPageContext::current(), 'selectedMainMenuItemName');
 
         ?>
 
-        <header class="YCPageHeaderView">
+        <header class="YCPageHeaderView CBDarkTheme">
             <div class="ad1" style="margin: 2px 0 3px; overflow: hidden; width: 100%;">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- Yay Header -->
@@ -24,20 +24,26 @@ final class YCPageHeaderView {
                 </script>
             </div>
 
+            <?php
+
+            CBView::renderModelAsHTML((object)[
+                'className' => 'CBMenuView',
+                'menuID' => CBWellKnownMenuForMain::ID(),
+                'selectedItemName' => $selectedMainMenuItemName,
+            ]);
+
+            ?>
+
+        </header>
+
         <?php
-
-        CBThemedMenuView::renderModelAsHTML((object)[
-            'menuID' => CBStandardModels::CBMenuIDForMainMenu,
-        ]);
-
-        echo '</header>';
     }
 
     /**
      * @return [string]
      */
-    public static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
+    static function CBHTMLOutput_CSSURLs() {
+        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
     }
 
     /**
@@ -45,7 +51,7 @@ final class YCPageHeaderView {
      *
      * @return stdClass
      */
-    public static function specToModel(stdClass $spec) {
+    static function CBModel_toModel(stdClass $spec) {
         return (object)[
             'className' => __CLASS__,
         ];

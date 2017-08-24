@@ -14,10 +14,9 @@ final class YCPageSettingsForResponsivePages {
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet'>
         <style>
             html {
-                color: rgba(0, 0, 0, 0.8);
                 font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
                 font-size: 18px;
             }

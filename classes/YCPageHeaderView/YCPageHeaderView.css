@@ -1,25 +1,3 @@
 .YCPageHeaderView {
-    background-color: hsl(0, 0%, 10%);
-    color: hsl(0, 0%, 90%);
-}
-
-.YCPageHeaderView .CBThemedMenuView a {
-    color: inherit;
-    display: inline-block;
-    padding: 10px;
-    text-decoration: none;
-}
-
-.YCPageHeaderView .CBThemedMenuView a:hover {
-    background-color: hsla(0, 0%, 100%, 0.1);
-}
-
-.YCPageHeaderView .CBThemedMenuView ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-.YCPageHeaderView .CBThemedMenuView li {
-    display: inline-block;
+    background-color: var(--CBBackgroundColor2);
 }
