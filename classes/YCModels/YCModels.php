@@ -14,7 +14,7 @@ final class YCModels {
         Colby::query('START TRANSACTION');
 
         try {
-            CBModels::deleteModelsByID([
+            CBModels::deleteByID([
                 YCModels::CBThemeIDForYCPageFooterViewContainer,
                 YCModels::CBThemeIDForYCPageFooterViewCopyright,
             ]);
