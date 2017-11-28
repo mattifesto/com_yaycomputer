@@ -35,7 +35,7 @@ final class YCPageFooterView {
                 </ul>
             </div>
             <div class="copyright">
-                <p>Copyright &copy; 2016 - <?= gmdate('Y'), ' ', cbhtml(CBSitePreferences::siteName()) ?>
+                <p>Copyright &copy; 2016 - <?= gmdate('Y') . ' ' . cbhtml(CBSitePreferences::siteName()) ?>
                 <p>Website System Design &amp; Development by <a href="https://mattifesto.com/">Mattifesto Design</a>
             </div>
         </footer>
