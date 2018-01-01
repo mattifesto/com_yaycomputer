@@ -5,11 +5,8 @@ final class YCPageSettingsForResponsivePages {
     /**
      * @return  null
      */
-    static function renderHeadContent() { ?>
+    static function CBHTMLOutput_renderHeadContent() { ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="<?= CBSystemURL ?>/javascript/html5shiv.js"></script>
-        <script src="<?= CBSystemURL ?>/javascript/ColbyEqualize.js"></script>
-        <link rel="stylesheet" href="<?= CBSystemURL ?>/css/equalize.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet'>
@@ -44,5 +41,12 @@ final class YCPageSettingsForResponsivePages {
             })(window,document,'script','dataLayer','<?= $googleTagManagerID ?>');</script>
             <!-- End Google Tag Manager -->
         <?php }
+    }
+
+    /**
+     * @return [string]
+     */
+    static function CBHTMLOutput_requiredHeadClassNames() {
+        return ['CBEqualize'];
     }
 }
