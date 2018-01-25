@@ -3,16 +3,32 @@
 final class YCBlogPostPageTemplate {
 
     /**
-     * @return stdClass
+     * @return object
      */
-    public static function model() {
-        $spec = CBStandardPageTemplate::model();
-        $spec->classNameForKind = 'YCBlogPostPageKind';
-        
-        $spec->layout->customLayoutClassName = 'YCBlogPostPageLayout';
-        $spec->layout->isArticle = true;
+    static function CBModelTemplate_spec() {
+        $spec = (object)[
+            'className' => 'CBViewPage',
+            'classNameForKind' => 'YCBlogPostPageKind',
+            'layout' => (object)[
+                'className' => 'CBPageLayout',
+                'CSSClassNames' => 'endContentWithWhiteSpace',
+                'customLayoutClassName' => 'YCBlogPostPageLayout',
+                'isArticle' => true,
+            ],
+        ];
 
-        $spec->sections[0]->showPublicationDate = true;
+        $spec->sections[] = (object)[
+            'className' => 'CBPageTitleAndDescriptionView',
+            'showPublicationDate' => true,
+        ];
+
+        $spec->sections[] = (object)[
+            'className' => 'CBArtworkView',
+        ];
+
+        $spec->sections[] = (object)[
+            'className' => 'CBMessageView',
+        ];
 
         return $spec;
     }
@@ -20,7 +36,7 @@ final class YCBlogPostPageTemplate {
     /**
      * @return string
      */
-    public static function title() {
-        return 'YC Blog Post';
+    static function CBModelTemplate_title() {
+        return 'Blog Post';
     }
 }
