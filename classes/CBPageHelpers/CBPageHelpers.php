@@ -20,13 +20,6 @@ final class CBPageHelpers {
     }
 
     /**
-     * @return [string]
-     */
-    static function classNamesForPageTemplates() {
-        return array_merge(['YCBlogPostPageTemplate'], CBPagesPreferences::defaultClassNamesForPageTemplates);
-    }
-
-    /**
      * @param stdClass $properties
      *
      * @return null
