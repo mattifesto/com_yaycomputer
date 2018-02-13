@@ -9,14 +9,14 @@ final class YCStandardPageLayout {
      * @return null
      */
     static function render(stdClass $layoutModel, callable $renderContentCallback) {
-        CBView::renderModelAsHTML((object)[
+        CBView::render((object)[
             'className' => 'YCPageHeaderView',
         ]);
 
         echo '<main class="YCStandardPageLayout">';
 
         if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
-            CBView::renderModelAsHTML((object)[
+            CBView::render((object)[
                 'className' => 'CBPageTitleAndDescriptionView',
             ]);
         }
@@ -25,19 +25,18 @@ final class YCStandardPageLayout {
 
         echo '</main>';
 
-        CBView::renderModelAsHTML((object)[
+        CBView::render((object)[
             'className' => 'YCPageFooterView',
         ]);
     }
 
     /**
-     * @param stdClass $spec
+     * @param model $spec
      *
-     * @return stdClass
+     * @return ?model
      */
-    public static function specToModel(stdClass $spec) {
+    static function CBModel_build(stdClass $spec): ?stdClass {
         return (object)[
-            'className' => __CLASS__,
             'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
         ];
     }
