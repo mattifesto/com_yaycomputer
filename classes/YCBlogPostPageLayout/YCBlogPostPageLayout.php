@@ -29,7 +29,7 @@ final class YCBlogPostPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        CBView::renderModelAsHTML((object)[
+        CBView::render((object)[
             'className' => 'YCPageHeaderView',
         ]);
 
@@ -66,20 +66,19 @@ final class YCBlogPostPageLayout {
 
         <?php
 
-        CBView::renderModelAsHTML((object)[
+        CBView::render((object)[
             'className' => 'YCPageFooterView',
             'hideFlexboxFill' => true,
         ]);
     }
 
     /**
-     * @param stdClass $spec
+     * @param model $spec
      *
-     * @return stdClass
+     * @return ?model
      */
-    public static function specToModel(stdClass $spec) {
+    static function CBModel_build(stdClass $spec): ?stdClass {
         $model = (object)[
-            'className' => __CLASS__,
             'addBottomPadding' => CBModel::value($spec, 'addBottomPadding', false, 'boolval'),
             'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
             'useLightTextColors' => CBModel::value($spec, 'useLightTextColors', false, 'boolval'),
