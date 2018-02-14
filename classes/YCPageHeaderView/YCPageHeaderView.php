@@ -3,9 +3,11 @@
 final class YCPageHeaderView {
 
     /**
-     * @return null
+     * @param model $model
+     *
+     * @return void
      */
-    static function CBView_render(stdClass $model) {
+    static function CBView_render(stdClass $model): void {
         $selectedMainMenuItemName = CBModel::value(CBHTMLOutput::pageInformation(), 'selectedMainMenuItemName');
 
         ?>
