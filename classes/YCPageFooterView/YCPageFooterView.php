@@ -3,13 +3,11 @@
 final class YCPageFooterView {
 
     /**
-     * @param bool? $model->hideFlexboxFill
+     * @param model $model
      *
-     * @return null
+     * @return void
      */
-    public static function renderModelAsHTML(stdClass $model) {
-        CBHTMLOutput::requireClassName(__CLASS__);
-
+    static function CBView_render(stdClass $model): void {
         if (empty(CBModel::value($model, 'hideFlexboxFill'))) {
             echo '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>';
         }
@@ -46,18 +44,16 @@ final class YCPageFooterView {
     /**
      * @return [string]
      */
-    public static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
+    static function CBHTMLOutput_CSSURLs() {
+        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
     }
 
     /**
-     * @param stdClass $spec
+     * @param model $spec
      *
-     * @return stdClass
+     * @return ?model
      */
-    public static function specToModel(stdClass $spec) {
-        return (object)[
-            'className' => __CLASS__,
-        ];
+    static function CBModel_build(stdClass $spec): ?stdClass {
+        return (object)[];
     }
 }
