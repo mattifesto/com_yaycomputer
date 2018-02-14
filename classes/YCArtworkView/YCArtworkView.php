@@ -3,15 +3,24 @@
 final class YCArtworkView {
 
     /**
+     * @param model $spec
+     *
+     * @return void
+     */
+    static function CBModel_upgrade(stdClass $spec): void {
+        if ($imageSpec = CBModel::valueAsObject($spec, 'image')) {
+            $spec->image = CBImage::fixAndUpgrade($imageSpec);
+        }
+    }
+
+    /**
      * @return null
      */
-    static function renderModelAsHTML(stdClass $model) {
+    static function CBView_render(stdClass $model) {
         if (empty($model->image)) {
             echo '<!-- YCArtworkView without an image. -->';
             return;
         }
-
-        CBHTMLOutput::requireClassName(__CLASS__);
 
         echo '<figure class="YCArtworkView">';
 
@@ -31,33 +40,22 @@ final class YCArtworkView {
     /**
      * @return [string]
      */
-    static function requiredCSSURLs() {
-        return [Colby::flexnameForCSSForClass(CBSitePreferences::siteURL(), __CLASS__)];
+    static function CBHTMLOutput_CSSURLs() {
+        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
     }
 
     /**
-     * @param string $spec->image?->extension
-     * @param string $spec->image?->filename
-     * @param int $spec->image?->height
-     * @param hex160 $spec->image?->ID
-     * @param int $spec->image?->width
+     * @param model $spec
      *
-     * @return stdClass
+     * @return ?model
      */
-    static function specToModel(stdClass $spec) {
-        $model = (object)[
-            'className' => __CLASS__,
-        ];
+    static function CBModel_build(stdClass $spec): ?stdClass {
+        $model = (object)[];
 
-        if (!empty($spec->image)) {
-            $image = $spec->image;
-            $model->image = (object)[
-                'extension' => $image->extension,
-                'filename' => $image->filename,
-                'height' => $image->height,
-                'ID' => $image->ID,
-                'width' => $image->width,
-            ];
+        /* image */
+
+        if ($imageSpec = CBModel::valueAsModel($spec, 'image', ['CBImage'])) {
+            $model->image = CBModel::build($imageSpec);
         }
 
         return $model;
