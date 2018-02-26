@@ -3,31 +3,27 @@
 final class YCPageSettingsForResponsivePages {
 
     /**
-     * @return  null
+     * @return [string]
      */
-    static function CBHTMLOutput_renderHeadContent() { ?>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet'>
-        <style>
-            html {
-                font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-                font-size: 18px;
-            }
-            .CBDarkTheme,
-            .CBLightTheme {
-                --CBTextColorForLinks: hsl(210, 100%, 50%);
-            }
-        </style>
-    <?php }
+    static function CBHTMLOutput_htmlClassNames(): array {
+        return ['CBLightTheme', 'CBStyleSheet'];
+    }
 
     /**
-     * @return  null
+     * @return void
      */
-    static function renderStartOfBodyContent() {
+    static function CBHTMLOutput_renderHeadContent(): void {
+        ?>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <?php
+    }
+
+    /**
+     * @return void
+     */
+    static function renderStartOfBodyContent(): void {
         $googleTagManagerID = CBSitePreferences::googleTagManagerID();
 
         if ($googleTagManagerID !== '') { ?>
@@ -46,7 +42,7 @@ final class YCPageSettingsForResponsivePages {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_requiredHeadClassNames() {
+    static function CBHTMLOutput_requiredHeadClassNames(): array {
         return ['CBEqualize'];
     }
 }
