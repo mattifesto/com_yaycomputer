@@ -5,12 +5,14 @@ final class YCArtworkView {
     /**
      * @param model $spec
      *
-     * @return void
+     * @return model
      */
-    static function CBModel_upgrade(stdClass $spec): void {
+    static function CBModel_upgrade(stdClass $spec): stdClass {
         if ($imageSpec = CBModel::valueAsObject($spec, 'image')) {
             $spec->image = CBImage::fixAndUpgrade($imageSpec);
         }
+
+        return $spec;
     }
 
     /**
