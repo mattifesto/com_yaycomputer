@@ -3,13 +3,6 @@
 final class YCPageFrame {
 
     /**
-     * @return [string]
-     */
-    static function CBHTMLOutput_CSSURLs(): array {
-        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
-    }
-
-    /**
      * @return void
      */
     static function CBInstall_install(): void {
