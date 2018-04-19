@@ -8,9 +8,26 @@ final class YCArtworkView {
      * @return model
      */
     static function CBModel_upgrade(stdClass $spec): stdClass {
-        if ($imageSpec = CBModel::valueAsObject($spec, 'image')) {
-            $spec->image = CBImage::fixAndUpgrade($imageSpec);
-        }
+        $specAsMarkup = CBMessageMarkup::stringToMarkup(
+            CBConvert::valueToPrettyJSON($spec)
+        );
+
+        CBLog::log((object)[
+            'className' => __CLASS__,
+            'message' => <<<EOT
+
+                A YCArtworkView was upgraded to a CBArtworkView
+
+                --- pre\n{$specAsMarkup}
+                ---
+
+EOT
+        ]);
+
+        CBModel::merge($spec, (object)[
+            'className' => 'CBArtworkView',
+            'size' => 'rw1280',
+        ]);
 
         return $spec;
     }
