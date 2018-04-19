@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @deprecated 2018.04.19
+ *
+ *      CBModel_upgrade() will convert specs for this view into CBArtworkView
+ *      specs. This class can be deleted after this has run on all sites.
+ */
 final class YCArtworkView {
 
     /**
