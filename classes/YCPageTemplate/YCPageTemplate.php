@@ -6,38 +6,37 @@ final class YCPageTemplate {
      * @return void
      */
     static function CBInstall_install(): void {
-        CBModelTemplates::installTemplate(__CLASS__);
+        CBModelTemplateCatalog::install(__CLASS__);
+        CBModelTemplateCatalog::installLivePageTemplate(__CLASS__);
     }
 
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
-        return ['CBModelTemplates'];
+        return ['CBModelTemplateCatalog'];
     }
 
     /**
-     * @return object
+     * @return model
      */
     static function CBModelTemplate_spec(): stdClass {
-        $spec = (object)[
+        return (object)[
             'className' => 'CBViewPage',
+            'classNameForSettings' => 'YCPageSettingsForResponsivePages',
             'frameClassName' => 'YCPageFrame',
+            'sections' => [
+                (object)[
+                    'className' => 'CBPageTitleAndDescriptionView',
+                ],
+                (object)[
+                    'className' => 'CBArtworkView',
+                ],
+                (object)[
+                    'className' => 'CBMessageView',
+                ]
+            ],
         ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBPageTitleAndDescriptionView',
-        ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBArtworkView',
-        ];
-
-        $spec->sections[] = (object)[
-            'className' => 'CBMessageView',
-        ];
-
-        return $spec;
     }
 
     /**
