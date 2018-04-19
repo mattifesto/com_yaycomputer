@@ -3,13 +3,6 @@
 final class CBPageHelpers {
 
     /**
-     * @return string
-     */
-    static function classNameForUnsetPageSettings() {
-        return 'YCPageSettingsForResponsivePages';
-    }
-
-    /**
      * @return [string]
      */
     static function classNamesForPageKinds() {
