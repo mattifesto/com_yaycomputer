@@ -8,7 +8,10 @@ final class YCPageHeaderView {
      * @return void
      */
     static function CBView_render(stdClass $model): void {
-        $selectedMainMenuItemName = CBModel::value(CBHTMLOutput::pageInformation(), 'selectedMainMenuItemName');
+        $selectedMainMenuItemName = CBModel::valueToString(
+            CBHTMLOutput::pageInformation(),
+            'selectedMainMenuItemName'
+        );
 
         ?>
 
@@ -30,7 +33,7 @@ final class YCPageHeaderView {
 
             CBView::renderModelAsHTML((object)[
                 'className' => 'CBMenuView',
-                'menuID' => CBWellKnownMenuForMain::ID(),
+                'menuID' => YCMainMenu::ID(),
                 'selectedItemName' => $selectedMainMenuItemName,
             ]);
 
