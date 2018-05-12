@@ -3,16 +3,6 @@
 final class CBPageHelpers {
 
     /**
-     * @return [string]
-     */
-    static function classNamesForPageKinds() {
-        return array_merge(
-            CBPagesPreferences::classNamesForPageKindsDefault(),
-            ['YCBlogPostPageKind']
-        );
-    }
-
-    /**
      * @param stdClass $properties
      *
      * @return null
