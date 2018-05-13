@@ -9,6 +9,7 @@ final class YCAppleProduct {
      */
     static function CBModel_build(stdClass $spec): ?stdClass {
         return (object)[
+            'amazonCode' => trim(CBModel::valueToString($spec, 'amazonCode')),
             'content' => CBModel::valueToString($spec, 'content'),
             'productURL' => trim(CBModel::valueToString($spec, 'productURL')),
             'sort' => CBModel::valueAsInt($spec, 'sort'),
