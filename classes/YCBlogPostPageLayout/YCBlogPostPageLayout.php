@@ -50,11 +50,13 @@ final class YCBlogPostPageLayout {
                 <?php
 
                 if (empty($layoutModel->hidePageTitleAndDescriptionView)) {
-                    CBView::renderModelAsHTML((object)[
-                        'className' => 'CBPageTitleAndDescriptionView',
-                        'showPublicationDate' => true,
-                        'useLightTextColors' => !empty($layoutModel->useLightTextColors),
-                    ]);
+                    CBView::render(
+                        (object)[
+                            'className' => 'CBPageTitleAndDescriptionView',
+                            'showPublicationDate' => true,
+                            'useLightTextColors' => !empty($layoutModel->useLightTextColors),
+                        ]
+                    );
                 }
 
                 $renderContentCallback();
