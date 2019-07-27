@@ -31,11 +31,13 @@ final class YCPageHeaderView {
 
             <?php
 
-            CBView::renderModelAsHTML((object)[
-                'className' => 'CBMenuView',
-                'menuID' => YCMainMenu::ID(),
-                'selectedItemName' => $selectedMainMenuItemName,
-            ]);
+            CBView::render(
+                (object)[
+                    'className' => 'CBMenuView',
+                    'menuID' => YCMainMenu::ID(),
+                    'selectedItemName' => $selectedMainMenuItemName,
+                ]
+            );
 
             ?>
 
@@ -44,12 +46,14 @@ final class YCPageHeaderView {
         <?php
     }
 
+
     /**
      * @return [string]
      */
     static function CBHTMLOutput_CSSURLs() {
         return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
     }
+
 
     /**
      * @param stdClass $spec
