@@ -8,11 +8,14 @@ final class CBPageHelpers {
      * @return null
      */
     static function renderDefaultPageFooter(stdClass $properties) {
-        CBView::renderModelAsHTML((object)[
-            'className' => 'YCPageFooterView',
-            'hideFlexboxFill' => true,
-        ]);
+        CBView::render(
+            (object)[
+                'className' => 'YCPageFooterView',
+                'hideFlexboxFill' => true,
+            ]
+        );
     }
+
 
     /**
      * @param stdClass $properties
@@ -20,8 +23,10 @@ final class CBPageHelpers {
      * @return null
      */
     static function renderDefaultPageHeader(stdClass $properties) {
-        CBView::renderModelAsHTML((object)[
-            'className' => 'YCPageHeaderView',
-        ]);
+        CBView::render(
+            (object)[
+                'className' => 'YCPageHeaderView',
+            ]
+        );
     }
 }
