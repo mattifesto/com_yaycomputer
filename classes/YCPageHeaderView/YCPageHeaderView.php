@@ -2,8 +2,58 @@
 
 final class YCPageHeaderView {
 
+    /* -- CBHTMLOutput interfaces -- -- -- -- -- */
+
     /**
-     * @param model $model
+     * @return [string]
+     */
+    static function CBHTMLOutput_CSSURLs() {
+        return [
+            Colby::flexpath(__CLASS__, 'css', cbsiteurl()),
+        ];
+    }
+
+
+    /* -- CBInstall interfaces -- -- -- -- -- */
+
+    /**
+     * @return void
+     */
+    static function CBInstall_install(): void {
+        CBViewCatalog::installView(
+            __CLASS__
+        );
+    }
+    /* CBInstall_install() */
+
+
+    /**
+     * @return [string]
+     */
+    static function CBInstall_requiredClassNames(): array {
+        return [
+            'CBViewCatalog',
+        ];
+    }
+    /* CBInstall_requiredClassNames() */
+
+
+    /* -- CBModel interfaces -- -- -- -- -- */
+
+    /**
+     * @param object $spec
+     *
+     * @return object
+     */
+    static function CBModel_build(stdClass $spec): stdClass {
+        return (object)[];
+    }
+
+
+    /* -- CBView interfaces -- -- -- -- -- */
+
+    /**
+     * @param object $model
      *
      * @return void
      */
@@ -16,16 +66,24 @@ final class YCPageHeaderView {
         ?>
 
         <header class="YCPageHeaderView CBDarkTheme">
-            <div class="ad1" style="margin: 2px 0 3px; overflow: hidden; width: 100%;">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <div
+                class="ad1"
+                style="margin: 2px 0 3px; overflow: hidden; width: 100%;"
+            >
+                <script
+                    async
+                    src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+                ></script>
                 <!-- Yay Header -->
-                <ins class="adsbygoogle"
-                     style="display:flex; justify-content: center;"
-                     data-ad-client="ca-pub-7551210095025170"
-                     data-ad-slot="7947860531"
-                     data-ad-format="auto"></ins>
+                <ins
+                    class="adsbygoogle"
+                    style="display:flex; justify-content: center;"
+                    data-ad-client="ca-pub-7551210095025170"
+                    data-ad-slot="7947860531"
+                    data-ad-format="auto"
+                ></ins>
                 <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
 
@@ -44,25 +102,5 @@ final class YCPageHeaderView {
         </header>
 
         <?php
-    }
-
-
-    /**
-     * @return [string]
-     */
-    static function CBHTMLOutput_CSSURLs() {
-        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
-    }
-
-
-    /**
-     * @param stdClass $spec
-     *
-     * @return stdClass
-     */
-    static function CBModel_toModel(stdClass $spec) {
-        return (object)[
-            'className' => __CLASS__,
-        ];
     }
 }
