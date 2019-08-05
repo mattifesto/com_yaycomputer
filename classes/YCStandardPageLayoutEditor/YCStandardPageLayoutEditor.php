@@ -5,19 +5,20 @@ final class YCStandardPageLayoutEditor {
     /**
      * @return [string]
      */
-    static function CBHTMLOutput_requiredClassNames(): array {
+     static function CBHTMLOutput_JavaScriptURLs(): array {
         return [
-            'CBUI',
-            'CBUIBooleanEditor',
+            Colby::flexpath(__CLASS__, 'v69.js', cbsiteurl()),
         ];
     }
+
 
     /**
      * @return [string]
      */
-     static function CBHTMLOutput_JavaScriptURLs(): array {
+    static function CBHTMLOutput_requiredClassNames(): array {
         return [
-            Colby::flexpath(__CLASS__, 'v69.js', cbsiteurl()),
+            'CBUI',
+            'CBUIBooleanEditor',
         ];
     }
 }
