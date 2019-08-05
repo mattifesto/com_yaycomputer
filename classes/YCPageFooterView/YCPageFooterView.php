@@ -2,14 +2,67 @@
 
 final class YCPageFooterView {
 
+    /* -- CBHTMLOutput interfaces -- -- -- -- -- */
+
     /**
-     * @param model $model
+     * @return [string]
+     */
+    static function CBHTMLOutput_CSSURLs(): array {
+        return [
+            Colby::flexpath(__CLASS__, 'css', cbsiteurl()),
+        ];
+    }
+
+
+    /* -- CBInstall interfaces -- -- -- -- -- */
+
+    /**
+     * @return void
+     */
+    static function CBInstall_install(): void {
+        CBViewCatalog::installView(
+            __CLASS__
+        );
+    }
+    /* CBInstall_install() */
+
+
+    /**
+     * @return [string]
+     */
+    static function CBInstall_requiredClassNames(): array {
+        return [
+            'CBViewCatalog',
+        ];
+    }
+    /* CBInstall_requiredClassNames() */
+
+
+    /* -- CBModel interfaces -- -- -- -- -- */
+
+    /**
+     * @param object $spec
+     *
+     * @return object
+     */
+    static function CBModel_build(stdClass $spec): stdClass {
+        return (object)[];
+    }
+
+
+    /* -- CBView interfaces -- -- -- -- -- */
+
+    /**
+     * @param object $model
      *
      * @return void
      */
     static function CBView_render(stdClass $model): void {
-        if (empty(CBModel::value($model, 'hideFlexboxFill'))) {
-            echo '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;"></div>';
+        if (!CBModel::valueToBool($model, 'hideFlexboxFill')) {
+            echo (
+                '<div class="YCPageFooterViewFill" style="flex: 1 1 auto;">' .
+                '</div>'
+            );
         }
 
         $sitePreferences = CBSitePreferences::model();
@@ -33,27 +86,19 @@ final class YCPageFooterView {
                 </ul>
             </div>
             <div class="copyright">
-                <p>Copyright &copy; 2016 - <?= gmdate('Y') . ' ' . cbhtml(CBSitePreferences::siteName()) ?>
-                <p>Website System Design &amp; Development by <a href="https://mattifesto.com/">Mattifesto Design</a>
+                <p>
+                    Copyright &copy; 2016 -
+                    <?=
+                        gmdate('Y') .
+                        ' ' .
+                        cbhtml(CBSitePreferences::siteName())
+                    ?>
+                <p>
+                    Website System Design &amp; Development by
+                    <a href="https://mattifesto.com/">Mattifesto Design</a>
             </div>
         </footer>
 
         <?php
-    }
-
-    /**
-     * @return [string]
-     */
-    static function CBHTMLOutput_CSSURLs() {
-        return [Colby::flexpath(__CLASS__, 'css', cbsiteurl())];
-    }
-
-    /**
-     * @param model $spec
-     *
-     * @return ?model
-     */
-    static function CBModel_build(stdClass $spec): ?stdClass {
-        return (object)[];
     }
 }
