@@ -5,14 +5,21 @@ final class YCBlogPostPageLayoutEditor {
     /**
      * @return [string]
      */
-    public static function requiredClassNames() {
-        return ['CBUI', 'CBUIBooleanEditor', 'CBUIStringEditor'];
+    static function CBHTMLOutput_JavaScriptURLs() {
+        return [
+            Colby::flexpath(__CLASS__, 'v69.js', cbsiteurl()),
+        ];
     }
+
 
     /**
      * @return [string]
      */
-    public static function requiredJavaScriptURLs() {
-        return [Colby::URLForJavaScriptForSiteClass(__CLASS__)];
+    static function CBHTMLOutput_requiredClassNames() {
+        return [
+            'CBUI',
+            'CBUIBooleanEditor',
+            'CBUIStringEditor',
+        ];
     }
 }
