@@ -3,24 +3,24 @@
 final class YCBlogPostPageLayout {
 
     /**
-     * @param bool? $layoutModel->addBottomPadding
-     * @param bool? $layoutModel->hidePageTitleAndDescriptionView
-     * @param hex160? $layoutModel->stylesID
-     * @param string? $layoutModel->stylesCSS
-     * @param bool? $layoutModel->useLightTextColors
-     *
+     * @param object $layoutModel
      * @param callable $renderContentCallback
      *
-     * @return null
+     * @return void
      */
-    static function render(stdClass $layoutModel, callable $renderContentCallback) {
+    static function render(
+        stdClass $layoutModel,
+        callable $renderContentCallback
+    ): void {
         $stylesID = CBModel::value($layoutModel, 'stylesID');
         $stylesCSS = CBModel::value($layoutModel, 'stylesCSS');
 
         $classes[] = 'YCBlogPostPageLayout';
+
         if (!empty($stylesID)) {
             $classes[] = CBTheme::IDToCSSClass($stylesID);
         }
+
         $classes = implode(' ', $classes);
 
         if (empty($stylesCSS)) {
@@ -29,9 +29,11 @@ final class YCBlogPostPageLayout {
             $styleElement = "<style>{$stylesCSS}</style>";
         }
 
-        CBView::render((object)[
-            'className' => 'YCPageHeaderView',
-        ]);
+        CBView::render(
+            (object)[
+                'className' => 'YCPageHeaderView',
+            ]
+        );
 
         $styles[] = 'flex: 1 1 auto';
 
@@ -54,7 +56,9 @@ final class YCBlogPostPageLayout {
                         (object)[
                             'className' => 'CBPageTitleAndDescriptionView',
                             'showPublicationDate' => true,
-                            'useLightTextColors' => !empty($layoutModel->useLightTextColors),
+                            'useLightTextColors' => !empty(
+                                $layoutModel->useLightTextColors
+                            ),
                         ]
                     );
                 }
@@ -68,29 +72,57 @@ final class YCBlogPostPageLayout {
 
         <?php
 
-        CBView::render((object)[
-            'className' => 'YCPageFooterView',
-            'hideFlexboxFill' => true,
-        ]);
+        CBView::render(
+            (object)[
+                'className' => 'YCPageFooterView',
+                'hideFlexboxFill' => true,
+            ]
+        );
     }
+    /* render() */
+
+
 
     /**
-     * @param model $spec
+     * @param object $spec
      *
-     * @return ?model
+     * @return object
      */
     static function CBModel_build(stdClass $spec): ?stdClass {
         $model = (object)[
-            'addBottomPadding' => CBModel::value($spec, 'addBottomPadding', false, 'boolval'),
-            'hidePageTitleAndDescriptionView' => CBModel::value($spec, 'hidePageTitleAndDescriptionView', false, 'boolval'),
-            'useLightTextColors' => CBModel::value($spec, 'useLightTextColors', false, 'boolval'),
+            'addBottomPadding' => CBModel::valueToBool(
+                $spec,
+                'addBottomPadding'
+            ),
+
+            'hidePageTitleAndDescriptionView' => CBModel::valueToBool(
+                $spec,
+                'hidePageTitleAndDescriptionView'
+            ),
+
+            'useLightTextColors' => CBModel::valueToBool(
+                $spec,
+                'useLightTextColors'
+            ),
         ];
 
-        if (!empty($stylesTemplate = CBModel::value($spec, 'stylesTemplate', '', 'trim'))) {
-            $model->stylesID = CBHex160::random();
-            $model->stylesCSS = CBTheme::stylesTemplateToStylesCSS($stylesTemplate, $model->stylesID);
+        $stylesTemplate = trim(
+            CBModel::valueToString(
+                $spec,
+                'stylesTemplate'
+            )
+        );
+
+        if ($stylesTemplate !== '') {
+            $model->stylesID = CBID::generateRandomCBID();
+            $model->stylesCSS = CBTheme::stylesTemplateToStylesCSS(
+                $stylesTemplate,
+                $model->stylesID
+            );
         }
 
         return $model;
     }
+    /* CBModel_build() */
+
 }
