@@ -2,14 +2,19 @@
 
 final class YCStandardPageLayoutEditor {
 
+    /* -- CBHTMLOutput interfaces -- -- -- -- -- */
+
+
+
     /**
      * @return [string]
      */
      static function CBHTMLOutput_JavaScriptURLs(): array {
         return [
-            Colby::flexpath(__CLASS__, 'v69.js', cbsiteurl()),
+            Colby::flexpath(__CLASS__, 'v83.js', cbsiteurl()),
         ];
     }
+
 
 
     /**
@@ -21,4 +26,6 @@ final class YCStandardPageLayoutEditor {
             'CBUIBooleanEditor',
         ];
     }
+    /* CBHTMLOutput_requiredClassNames() */
+
 }

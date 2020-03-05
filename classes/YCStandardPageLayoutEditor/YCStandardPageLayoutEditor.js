@@ -7,34 +7,52 @@
     CBUIBooleanEditor,
 */
 
+
+
 var YCStandardPageLayoutEditor = {
 
+    /* -- CBUISpecEditor interfaces -- -- -- -- -- */
+
+
+
     /**
-     * @param object args.spec
-     * @param function args.specChangedCallback
+     * @param object args
+     *
+     *      {
+     *          spec: object
+     *          specChangedCallback: function
+     *      }
      *
      * @return Element
      */
-    createEditor: function (args) {
-        var element = CBUI.createElement("YCStandardPageLayoutEditor");
+    CBUISpecEditor_createEditorElement(
+        args
+    ) {
+        let spec = args.spec;
+        let specChangedCallback = args.specChangedCallback;
 
-        let section = CBUI.createSection();
-        let item = CBUI.createSectionItem();
+        let elements = CBUI.createElementTree(
+            "YCStandardPageLayoutEditor",
+            "CBUI_sectionContainer",
+            "CBUI_section"
+        );
 
-        item.appendChild(
+        let element = elements[0];
+        let sectionElement = elements[2];
+
+        sectionElement.appendChild(
             CBUIBooleanEditor.create(
                 {
                     labelText: "Hide Page Title and Description View",
                     propertyName: "hidePageTitleAndDescriptionView",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
                 }
             ).element
         );
 
-        section.appendChild(item);
-        element.appendChild(section);
-
         return element;
     },
+    /* CBUISpecEditor_createEditorElement() */
+
 };
