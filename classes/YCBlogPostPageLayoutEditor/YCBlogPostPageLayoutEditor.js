@@ -3,6 +3,7 @@
 /* jshint esversion: 6 */
 /* exported YCBlogPostPageLayoutEditor */
 /* global
+    CBModel,
     CBUI,
     CBUIBooleanEditor,
     CBUIStringEditor,
@@ -10,85 +11,110 @@
 
 var YCBlogPostPageLayoutEditor = {
 
+    /* -- CBUISpecEditor interfaces -- -- -- -- -- */
+
+
+
     /**
-     * @param object args.spec
-     * @param function args.specChangedCallback
+     * @param object args
+     *
+     *      {
+     *          spec: object
+     *          specChangedCallback: function
+     *      }
      *
      * @return Element
      */
-    createEditor: function(args) {
-        var section, item;
-        var element = CBUI.createElement("YCBlogPostPageLayoutEditor");
+    CBUISpecEditor_createEditorElement(
+        args
+    ) {
+        let spec = args.spec;
+        let specChangedCallback = args.specChangedCallback;
 
-        section = CBUI.createSection();
-        item = CBUI.createSectionItem();
+        let elements, sectionElement;
 
-        item.appendChild(
+        elements = CBUI.createElementTree(
+            "YCBlogPostPageLayoutEditor",
+            "CBUI_sectionContainer",
+            "CBUI_section"
+        );
+
+        let element = elements[0];
+
+        sectionElement = elements[2];
+
+        sectionElement.appendChild(
             CBUIBooleanEditor.create(
                 {
                     labelText: "Hide Page Title and Description View",
                     propertyName: "hidePageTitleAndDescriptionView",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
                 }
             ).element
         );
 
-        section.appendChild(item);
-
-        item = CBUI.createSectionItem();
-
-        item.appendChild(
+        sectionElement.appendChild(
             CBUIBooleanEditor.create(
                 {
                     labelText: "Use Light Text Colors",
                     propertyName: "useLightTextColors",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
                 }
             ).element
         );
 
-        section.appendChild(item);
 
-        item = CBUI.createSectionItem();
-
-        item.appendChild(
+        sectionElement.appendChild(
             CBUIBooleanEditor.create(
                 {
                     labelText: "Add Bottom Padding",
                     propertyName: "addBottomPadding",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
+                    spec: spec,
+                    specChangedCallback: specChangedCallback,
                 }
             ).element
         );
-
-        section.appendChild(item);
-
-        element.appendChild(section);
 
         /* local styles */
 
-        element.appendChild(CBUI.createHalfSpace());
-
-        section = CBUI.createSection();
-        item = CBUI.createSectionItem();
-
-        item.appendChild(
-            CBUIStringEditor.createEditor(
-                {
-                    labelText: "Styles Template",
-                    propertyName: "stylesTemplate",
-                    spec: args.spec,
-                    specChangedCallback: args.specChangedCallback,
-                }
-            ).element
+        elements = CBUI.createElementTree(
+            "CBUI_sectionContainer",
+            "CBUI_section"
         );
 
-        section.appendChild(item);
-        element.appendChild(section);
+        element.appendChild(
+            elements[0]
+        );
+
+        sectionElement = elements[1];
+
+
+        /* styles template */
+        {
+            let templateEditor = CBUIStringEditor.create();
+            templateEditor.title = "Styles Template";
+
+            templateEditor.value = CBModel.valueToString(
+                spec,
+                "stylesTemplate"
+            );
+
+            templateEditor.changed = function () {
+                spec.stylesTemplate = templateEditor.value;
+                specChangedCallback();
+            };
+
+            sectionElement.appendChild(
+                templateEditor.element
+            );
+        }
+        /* styles template */
+
 
         return element;
     },
+    /* CBUISpecEditor_createEditorElement() */
+
 };
