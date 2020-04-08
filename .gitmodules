@@ -1,9 +1,6 @@
 [submodule "colby"]
 	path = colby
 	url = mdgit@mattifesto.com:~/colby.git
-[submodule "libraries/SCShoppingCartLibrary"]
-	path = libraries/SCShoppingCartLibrary
-	url = mdgit@mattifesto.com:~/libraries/SCShoppingCartLibrary.git
 [submodule "swiftmailer"]
 	path = swiftmailer
 	url = https://github.com/swiftmailer/swiftmailer.git
