@@ -31,6 +31,9 @@ final class YCBlogPostPageTemplate {
                     'showPublicationDate' => true,
                 ],
                 (object)[
+                    'className' => 'CBYouTubeView',
+                ],
+                (object)[
                     'className' => 'CBArtworkView',
                 ],
                 (object)[
