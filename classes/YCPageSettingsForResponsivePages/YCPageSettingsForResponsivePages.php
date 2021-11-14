@@ -1,6 +1,7 @@
 <?php
 
-final class YCPageSettingsForResponsivePages {
+final class
+YCPageSettingsForResponsivePages {
 
     /**
      * @return void
@@ -9,12 +10,16 @@ final class YCPageSettingsForResponsivePages {
         CBPageSettingsCatalog::install(__CLASS__);
     }
 
+
+
     /**
      * @return [string]
      */
     static function CBInstall_requiredClassNames(): array {
         return ['CBPageSettingsCatalog'];
     }
+
+
 
     /**
      * @return [string]
@@ -23,15 +28,22 @@ final class YCPageSettingsForResponsivePages {
         return ['CBLightTheme', 'CBStyleSheet'];
     }
 
+
+
     /**
      * @return [string]
      */
-    static function CBPageSettings_requiredClassNames(): array {
+    static function
+    CBPageSettings_requiredClassNames(
+    ): array {
         return [
             'CBEqualizePageSettingsPart',
             'CBResponsiveViewportPageSettingsPart',
             'CBGoogleTagManagerPageSettingsPart',
             'CBFacebookPageSettingsPart',
+            'CB_CBPageSettingsPart_SitePreferences',
         ];
     }
+    /* CBPageSettings_requiredClassNames() */
+
 }
