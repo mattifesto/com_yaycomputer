@@ -1,6 +1,7 @@
 <?php
 
-final class YCPageHeaderView {
+final class
+YCPageHeaderView {
 
     /* -- CBHTMLOutput interfaces -- -- -- -- -- */
 
@@ -70,10 +71,10 @@ final class YCPageHeaderView {
                 class="ad1"
                 style="margin: 2px 0 3px; overflow: hidden; width: 100%;"
             >
-                <script
-                    async
-                    src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-                ></script>
+            <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7551210095025170"
+                crossorigin="anonymous"></script>
                 <!-- Yay Header -->
                 <ins
                     class="adsbygoogle"
