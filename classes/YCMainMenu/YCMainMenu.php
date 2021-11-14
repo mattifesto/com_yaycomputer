@@ -1,6 +1,7 @@
 <?php
 
-final class YCMainMenu {
+final class
+YCMainMenu {
 
     /* -- CBInstall interfaces -- -- -- -- -- */
 
@@ -9,7 +10,9 @@ final class YCMainMenu {
     /**
      * @return void
      */
-    static function CBInstall_install(): void {
+    static function
+    CBInstall_install(
+    ): void {
         $updater = CBModelUpdater::fetch(
             (object)[
                 'className' => 'CBMenu',
@@ -19,7 +22,13 @@ final class YCMainMenu {
             ]
         );
 
-        CBModelUpdater::save($updater);
+        CBModelUpdater::save(
+            $updater
+        );
+
+        CB_StandardPageFrame::setDefaultMainMenuModelCBID(
+            YCMainMenu::ID()
+        );
     }
     /* CBInstall_install() */
 
@@ -28,8 +37,11 @@ final class YCMainMenu {
     /**
      * @return [string]
      */
-    static function CBInstall_requiredClassNames(): array {
+    static function
+    CBInstall_requiredClassNames(
+    ): array {
         return [
+            'CB_StandardPageFrame',
             'CBMenu',
             'CBModelUpdater',
         ];
