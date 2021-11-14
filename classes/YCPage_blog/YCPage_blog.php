@@ -60,25 +60,39 @@ final class YCPage_blog {
     /**
      * @return void
      */
-    private static function installPage(): void {
-        $updater = CBModelUpdater::fetch(
-            CBModelTemplateCatalog::fetchLivePageTemplate(
-                (object)[
-                    'ID' => YCPage_blog::ID(),
-                    'classNameForKind' => 'YCGeneratePageKind',
-                    'isPublished' => true,
-                    'selectedMenuItemNames' => 'blog',
-                    'title' => 'Blog',
-                    'URI' => 'blog',
-                ]
-            )
+    private static function
+    installPage(
+    ): void {
+        $updater = new CBModelUpdater(
+            YCPage_blog::ID()
         );
 
-        $pageSpec = $updater->working;
+        $pageSpec = $updater->getSpec();
+
+        CBModel::merge(
+            $pageSpec,
+            CBViewPage::standardPageTemplate()
+        );
+
+        CBModel::merge(
+            $pageSpec,
+            (object)[
+                'classNameForKind' => 'YCGeneratePageKind',
+                'isPublished' => true,
+                'selectedMenuItemNames' => 'blog',
+                'title' => 'Blog',
+                'URI' => 'blog',
+            ]
+        );
 
         /* publicationTimeStamp */
 
-        if (CBModel::valueAsInt($pageSpec, 'publicationTimeStamp') === null) {
+        if (
+            CBModel::valueAsInt(
+                $pageSpec,
+                'publicationTimeStamp'
+            ) === null
+        ) {
             $pageSpec->publicationTimeStamp = time();
         }
 
@@ -113,7 +127,7 @@ final class YCPage_blog {
 
         /* save */
 
-        CBModelUpdater::save($updater);
+        $updater->save2();
     }
     /* installPage() */
 
