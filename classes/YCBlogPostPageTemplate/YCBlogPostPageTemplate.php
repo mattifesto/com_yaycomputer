@@ -1,6 +1,7 @@
 <?php
 
-final class YCBlogPostPageTemplate {
+final class
+YCBlogPostPageTemplate {
 
     /* -- CBInstall interfaces -- -- -- -- -- */
 
@@ -33,15 +34,21 @@ final class YCBlogPostPageTemplate {
     /**
      * @return object
      */
-    static function CBModelTemplate_spec(): stdClass {
-        return (object)[
-            'className' => 'CBViewPage',
-            'classNameForKind' => 'YCBlogPostPageKind',
-            'classNameForSettings' => 'YCPageSettingsForResponsivePages',
-            'frameClassName' => 'YCPageFrame',
-            'selectedMainMenuItemName' => 'blog',
-            'sections' => CBDefaults_BlogPost::viewSpecs(),
-        ];
+    static function
+    CBModelTemplate_spec(
+    ): stdClass {
+        $pageSpec = CBViewPage::standardPageTemplate();
+
+        CBModel::merge(
+            $pageSpec,
+            (object)[
+                'classNameForKind' => 'YCBlogPostPageKind',
+                'selectedMainMenuItemName' => 'blog',
+                'sections' => CBDefaults_BlogPost::viewSpecs(),
+            ]
+        );
+
+        return $pageSpec;
     }
     /* CBModelTemplate_spec() */
 
